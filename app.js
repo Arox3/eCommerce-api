@@ -9,6 +9,10 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const connectDB = require("./src/config/db");
 const errorHandler = require("./src/middlewares/errorHandler");
+const PORT = process.env.PORT || 5000;
+
+console.log(process.env.NODE_ENV)
+
 connectDB();
 
 app.use(morgan("dev"));
@@ -29,8 +33,6 @@ app.all("*", (req, res) => {
 });
 
 app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");

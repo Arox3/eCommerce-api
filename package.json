@@ -21,5 +21,8 @@
     "mongoose": "^5.13.20",
     "mongoose-sequence": "^5.3.1",
     "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
