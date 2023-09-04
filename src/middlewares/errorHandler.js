@@ -12,7 +12,7 @@ const errorHandler = (error, req, res, next) => {
     });
   }
 
-  logger.error(error.message);
+  logger.error(error.message, errorDetails(req));
   return res.status(500).json({
     status: 500,
     result: getReasonPhrase(500),
