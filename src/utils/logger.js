@@ -1,9 +1,12 @@
 require("winston-mongodb");
+const moment = require("moment-timezone");
 const { createLogger, format, transports } = require("winston");
 const { combine, timestamp, printf } = format;
 
 const logFormat = printf(({ timestamp, level, message }) => {
-  return `[${timestamp}] [${level}]: ${message}`;
+  return `[${moment(timestamp)
+    .tz("Asia/Bangkok")
+    .format("YYYY-MM-DD HH:mm:ss")}] [${level}]: ${message}`;
 });
 
 const logger = createLogger({
