@@ -1,3 +1,4 @@
+const moment = require("moment-timezone");
 const { getReasonPhrase } = require("http-status-codes");
 const { AppError } = require("../utils/AppError");
 const logger = require("../utils/logger");
@@ -22,6 +23,7 @@ const errorHandler = (error, req, res, next) => {
 
 const errorDetails = (req) =>
   new Object({
+    timeStamp: moment().tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"),
     requestInfomation: {
       method: req.method,
       originalUrl: req.originalUrl,

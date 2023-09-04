@@ -11,7 +11,6 @@ const logFormat = printf(({ timestamp, level, message }) => {
 
 const logger = createLogger({
   level: process.env.NODE_ENV === "development" ? "debug" : "info",
-  format: combine(timestamp({ format: "YYYY-MM-DD HH:mm:ss" }), logFormat),
   transports: [
     new transports.Console({
       format: combine(format.colorize(), logFormat),
@@ -21,7 +20,7 @@ const logger = createLogger({
       db: process.env.MONGODB_URI,
       options: { useUnifiedTopology: true },
       collection: "logs",
-      format: format.combine(format.json(), format.metadata()),
+      format: combine(format.metadata()),
     }),
   ],
 });
