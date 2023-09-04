@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const logger = require("../utils/logger");
 
 const connectDB = async () => {
   try {
@@ -9,7 +10,7 @@ const connectDB = async () => {
       useCreateIndex: true,
     });
   } catch (err) {
-    console.error("MongoDB connection error: ", err);
+    logger.error("MongoDB connection error: " + err);
     process.exit(1); // Exit the process with failure
   }
 };
