@@ -17,4 +17,6 @@ productSchema.plugin(AutoIncrement, {
   start_seq: 500,
 });
 
+// ตังเมเอง
+
 module.exports = mongoose.model("product", productSchema);
