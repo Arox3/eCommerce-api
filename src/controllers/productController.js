@@ -4,10 +4,10 @@ const { handleResponse } = require("../utils/responseHandler");
 const { handleError } = require("../utils/AppError");
 
 const createProduct = async (req, res) => {
-  if (!req.body.productName)
+  if (!req.body.product_name)
     throw handleError(
       StatusCodes.BAD_REQUEST,
-      "Field productName is required."
+      "Field product_name is required."
     );
   const newProduct = await new Product(req.body).save();
   return handleResponse(

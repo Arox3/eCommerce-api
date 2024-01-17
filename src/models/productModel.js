@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
 );
 
 productSchema.plugin(AutoIncrement, {
-  inc_field: "id",
+  inc_field: "product_id",
   id: "productIdNums",
   start_seq: 500,
 });
