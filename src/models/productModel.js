@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema(
     product_name: { type: String, default: null },
     price: { type: Number, default: null },
     quantity: { type: Number, default: null },
+    amount: { type: Number, default: null },
     detail: { type: Object, default: null },
   },
   { timestamps: true }
