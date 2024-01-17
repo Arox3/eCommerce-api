@@ -34,6 +34,8 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler);
 
+// ตังเมเด็กเหี้ย
+
 const PORT = process.env.PORT || 5000;
 mongoose.connection.once("open", () => {
   logger.info("Connected to MongoDB");
