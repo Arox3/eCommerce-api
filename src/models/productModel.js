@@ -3,11 +3,11 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: String, default: null },
-    description: { type: String, default: null },
-    img: { type: String, default: null },
-    category: { type: String, default: null },
-    price: { type: Number, default: 0 },
+    product_id: { type: Number, default: null },
+    product_name: { type: String, default: null },
+    price: { type: Number, default: null },
+    quantity: { type: Number, default: null },
+    detail: { type: Object, default: null },
   },
   { timestamps: true }
 );

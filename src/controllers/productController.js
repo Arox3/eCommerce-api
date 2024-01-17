@@ -4,19 +4,23 @@ const { handleResponse } = require("../utils/responseHandler");
 const { handleError } = require("../utils/AppError");
 
 const createProduct = async (req, res) => {
-  if (!req.body.name)
-    throw handleError(StatusCodes.BAD_REQUEST, "Field name is required.");
+  if (!req.body.productName)
+    throw handleError(
+      StatusCodes.BAD_REQUEST,
+      "Field productName is required."
+    );
   const newProduct = await new Product(req.body).save();
-  return handleResponse(res, StatusCodes.CREATED, newProduct);
+  return handleResponse(
+    res,
+    StatusCodes.CREATED,
+    newProduct,
+    "Add the product successfully."
+  );
 };
 
 const getAllProduct = async (req, res) => {
-  const product = await Product.find(req.query);
-  return handleResponse(
-    res,
-    StatusCodes.OK,
-    product.length !== 0 ? product : "Product not found."
-  );
+  const product = await Product.find();
+  return handleResponse(res, StatusCodes.OK, product);
 };
 
 const getProduct = async (req, res) => {
@@ -24,7 +28,8 @@ const getProduct = async (req, res) => {
   return handleResponse(
     res,
     StatusCodes.OK,
-    product !== null ? product : `Product ID ${req.params.id} not found.`
+    product !== null ? product : null,
+    product !== null ? null : `Product ID ${req.params.id} not found.`
   );
 };
 
@@ -38,9 +43,24 @@ const updateProduct = async (req, res) => {
       `Product ID ${req.body.id} not found.`
     );
 
-  await Product.updateOne({ id: req.body.id }, { $set: req.body });
+  await Product.updateOne(
+    { id: req.body.id },
+    {
+      $set: {
+        productName: req.body?.productName ?? foundProduct.productName,
+        description: req.body?.description ?? foundProduct.description,
+        price: req.body?.price ?? foundProduct.price,
+        productImage: req.body?.productImage ?? foundProduct.productImage,
+      },
+    }
+  );
   const updatedProduct = await Product.findOne({ id: req.body.id });
-  return handleResponse(res, StatusCodes.OK, updatedProduct);
+  return handleResponse(
+    res,
+    StatusCodes.OK,
+    updatedProduct,
+    "The update was successful."
+  );
 };
 
 const deleteProduct = async (req, res) => {
