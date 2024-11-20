@@ -24,6 +24,7 @@ app.use("/", express.static(path.join(__dirname, "./src/public")));
 app.use("/", require("./src/routes/root"));
 app.use("/products", require("./src/routes/productRoutes"));
 app.use("/orders", require("./src/routes/orderRoutes"));
+app.use("/persons", require("./src/routes/personRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404).json({
