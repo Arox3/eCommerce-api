@@ -3,8 +3,6 @@ const Person = require("../models/personModel");
 const { handleResponse } = require("../utils/responseHandler");
 const { handleError } = require("../utils/AppError");
 
-// asdasd
-
 const createPerson = async (req, res) => {
   await Person.insertMany(req.body);
 
